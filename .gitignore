@@ -1,0 +1,10 @@
+# IDE settings
+.idea/
+.vscode/
+
+# Local Environment
+.envrc
+
+# Build files
+rust/Cargo.lock
+rust/target/
