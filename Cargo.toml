@@ -7,6 +7,7 @@ license-file = "LICENSE"
 description = "Core components of Obrewin Trading Framework"
 repository = "https://github.com/McDic/Obrewin"
 readme = "README.md"
+exclude = [".github/", "obrewin/", "*.py", "*.pyi", "*.pyc", ".envrc", ".direnv/"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
