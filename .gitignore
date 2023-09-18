@@ -4,7 +4,12 @@
 
 # Local Environment
 .envrc
+.direnv/
 
 # Build files
-rust/Cargo.lock
-rust/target/
+Cargo.lock
+target/
+*.so
+
+# Python
+**/__pycache__/
