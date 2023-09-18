@@ -1,6 +1,6 @@
 [package]
 name = "obrewin"
-version = "0.0.0"
+version = "0.0.1"
 edition = "2021"
 authors = ["Minsung Kim <spongbob9876@naver.com>"]
 license-file = "LICENSE"
