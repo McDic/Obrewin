@@ -26,4 +26,4 @@ repository = "https://github.com/McDic/Obrewin"
 [tool.maturin]
 features = ["pyo3/extension-module"]
 module-name = "obrewin.core"
-exclude = ["Cargo.lock"]
+exclude = ["Cargo.lock", ".github/**"]
