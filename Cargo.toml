@@ -4,9 +4,12 @@ resolver = "2"
 
 [workspace.package]
 authors = ["Minsung Kim <spongbob9876@naver.com>"]
+categories = ["finance"]
 edition = "2021"
-repository = "https://github.com/McDic/Obrewin"
+homepage = "https://github.com/McDic/Obrewin"
+keywords = ["trading", "finance"]
 license-file = "LICENSE"
+repository = "https://github.com/McDic/Obrewin"
 
 [workspace.dependencies]
 chrono = { version = "0.4" }

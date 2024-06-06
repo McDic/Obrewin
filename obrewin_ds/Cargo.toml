@@ -1,12 +1,16 @@
 [package]
 name = "obrewin-data-structures"
+description = "Data structures for Obrewin"
 readme = "README.md"
 version = "0.0.1"
 
 authors = { workspace = true }
+categories = { workspace = true }
 edition = { workspace = true }
-repository = { workspace = true }
+homepage = { workspace = true }
+keywords = { workspace = true }
 license-file = { workspace = true }
+repository = { workspace = true }
 
 [lib]
 name = "obrewin_data_structures"
