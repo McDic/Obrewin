@@ -2,7 +2,6 @@
 name = "obrewin-network"
 description = "Networking components for Obrewin"
 readme = "README.md"
-version = "0.0.1"
 
 authors = { workspace = true }
 categories = { workspace = true }
@@ -11,6 +10,7 @@ homepage = { workspace = true }
 keywords = { workspace = true }
 license-file = { workspace = true }
 repository = { workspace = true }
+version = { workspace = true }
 
 [lib]
 name = "obrewin_network"

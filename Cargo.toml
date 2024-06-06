@@ -10,6 +10,7 @@ homepage = "https://github.com/McDic/Obrewin"
 keywords = ["trading", "finance"]
 license-file = "LICENSE"
 repository = "https://github.com/McDic/Obrewin"
+version = "0.0.2"
 
 [workspace.dependencies]
 chrono = { version = "0.4" }
