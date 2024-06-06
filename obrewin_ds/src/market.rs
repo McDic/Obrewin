@@ -3,6 +3,7 @@ use rust_decimal::Decimal;
 
 use std::borrow::BorrowMut;
 use std::collections::BTreeMap;
+use std::ops::Neg;
 
 use crate::utils::{WrapIterator, WrappedIterator};
 
@@ -28,6 +29,65 @@ pub struct Trade {
 /// Type alias for orderbook iterators.
 type OrderbookIterator<'s> = WrappedIterator<'s, (&'s Price, &'s Quantity)>;
 
+/// Represents single change on an orderbook.
+pub enum OrderbookChange {
+    /// Set `= quantity` at given `price` level.
+    Set { price: Price, quantity: Quantity },
+    /// Set `+= quantity` at given `price` level.
+    Delta { price: Price, quantity: Quantity },
+}
+
+impl OrderbookChange {
+    /// Get price target level.
+    fn get_price_level(&self) -> Price {
+        match self {
+            Self::Set {
+                price,
+                quantity: _q,
+            } => *price,
+            Self::Delta {
+                price,
+                quantity: _q,
+            } => *price,
+        }
+    }
+
+    /// Apply current change into given `quantity`.
+    fn apply(&self, quantity: &mut Quantity) -> () {
+        match self {
+            Self::Set {
+                price: _p,
+                quantity: q,
+            } => {
+                *quantity = *q;
+            }
+            Self::Delta {
+                price: _p,
+                quantity: q,
+            } => {
+                *quantity += q;
+            }
+        }
+    }
+}
+
+impl Neg for OrderbookChange {
+    type Output = Self;
+
+    fn neg(self) -> Self::Output {
+        match self {
+            Self::Set { price, quantity } => Self::Set {
+                price,
+                quantity: -quantity,
+            },
+            Self::Delta { price, quantity } => Self::Delta {
+                price,
+                quantity: -quantity,
+            },
+        }
+    }
+}
+
 /// Trait for orderbook.
 /// The reason why I made a trait for this is because
 /// there can be several different structs of an Orderbook.
@@ -44,9 +104,9 @@ pub trait Orderbook {
     /// Return an iterator that yields bids from the best to the worst.
     fn iter_bid<'s>(&'s self) -> OrderbookIterator<'s>;
 
-    /// Apply delta on current orderbook.
+    /// Apply change on current orderbook.
     /// This method does not guarantee that the modified state is valid.
-    fn apply_delta(&mut self, price: Price, quantity: Quantity, is_ask: bool) -> ();
+    fn apply_change(&mut self, change: &OrderbookChange, is_ask: bool) -> ();
 
     /// Return first ask price, first ask quantity, and iterator of remaining ask levels.
     /// If there is no ask, return `Price::MIN` as price and `Quantity::ZERO` as quantity.
@@ -114,13 +174,13 @@ impl Orderbook for UnsizedOrderbook {
         self.bids.iter().wrap_iter()
     }
 
-    fn apply_delta(&mut self, price: Price, quantity: Quantity, is_ask: bool) -> () {
+    fn apply_change(&mut self, change: &OrderbookChange, is_ask: bool) -> () {
         let mapping = if is_ask {
             self.asks.borrow_mut()
         } else {
             self.bids.borrow_mut()
         };
-        let entry = mapping.entry(price).or_default();
-        *entry += quantity;
+        let entry = mapping.entry(change.get_price_level()).or_default();
+        change.apply(entry);
     }
 }
