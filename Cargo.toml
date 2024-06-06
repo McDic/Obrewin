@@ -1,5 +1,5 @@
 [workspace]
-members = ["./obrewin_ds"]
+members = ["./obrewin_ds", "./obrewin_network"]
 resolver = "2"
 
 [workspace.package]

@@ -1,9 +1,14 @@
 # Obrewin Data Structures
 
-This crate represents standardized core data structures and traits, including
+This crate provides standardized core data structures and traits for `Obrewin`, including
 
 - Market data
 - Order request and response
-- Exchange adapter behaviors
 
 and more.
+
+## How to install
+
+```bash
+cargo install obrewin-data-structures
+```
