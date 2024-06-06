@@ -1,10 +1,11 @@
-use chrono::{DateTime, Utc};
 use rust_decimal::Decimal;
+use serde::{Deserialize, Serialize};
 
 use std::borrow::BorrowMut;
 use std::collections::BTreeMap;
 use std::ops::Neg;
 
+use crate::misc::DateTimeUTC;
 use crate::utils::{WrapIterator, WrappedIterator};
 
 /// Alias for price type.
@@ -14,14 +15,14 @@ pub type Price = Decimal;
 pub type Quantity = Decimal;
 
 /// Represents raw trade.
-#[derive(Clone)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct Trade {
     pub price: Price,
     pub quantity: Quantity,
     /// The trade ID officially marked by the exchange.
     pub trade_id: String,
     /// Received timestamp of the trade
-    pub timestamp: DateTime<Utc>,
+    pub timestamp: DateTimeUTC,
     /// Is buyer maker of this trade?
     pub is_buyer_maker: Option<bool>,
 }
