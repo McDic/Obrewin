@@ -1,5 +1,5 @@
 use rust_decimal::Decimal;
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 
 use std::borrow::BorrowMut;
 use std::collections::BTreeMap;
@@ -15,7 +15,7 @@ pub type Price = Decimal;
 pub type Quantity = Decimal;
 
 /// Represents raw trade.
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Clone, Deserialize)]
 pub struct Trade {
     pub price: Price,
     pub quantity: Quantity,
@@ -26,9 +26,6 @@ pub struct Trade {
     /// Is buyer maker of this trade?
     pub is_buyer_maker: Option<bool>,
 }
-
-/// Type alias for orderbook iterators.
-type OrderbookIterator<'s> = WrappedIterator<'s, (&'s Price, &'s Quantity)>;
 
 /// Represents single change on an orderbook.
 pub enum OrderbookChange {
@@ -88,6 +85,9 @@ impl Neg for OrderbookChange {
         }
     }
 }
+
+/// Type alias for orderbook iterators.
+type OrderbookIterator<'s> = WrappedIterator<'s, (&'s Price, &'s Quantity)>;
 
 /// Trait for orderbook.
 /// The reason why I made a trait for this is because
