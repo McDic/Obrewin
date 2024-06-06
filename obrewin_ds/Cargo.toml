@@ -1,0 +1,14 @@
+[package]
+name = "obrewin-data-structures"
+readme = "README.md"
+version = "0.0.1"
+
+authors = {workspace = true}
+edition = {workspace = true}
+repository = {workspace = true}
+license-file = {workspace = true}
+
+[lib]
+name = "obrewin_data_structures"
+
+[dependencies]
