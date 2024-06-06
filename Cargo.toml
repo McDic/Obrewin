@@ -9,3 +9,6 @@ repository = "https://github.com/McDic/Obrewin"
 license-file = "LICENSE"
 
 [workspace.dependencies]
+chrono = { version = "0.4" }
+rust_decimal = { version = "1.35" }
+rust_decimal_macros = { version = "1.35" }
