@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
+      - run: ./compare_versions.sh
+        name: Compare version
       - run: cargo publish -p obrewin-utils
         name: Publish utils
       - run: cargo publish -p obrewin-data-structures
