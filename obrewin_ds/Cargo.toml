@@ -17,5 +17,6 @@ name = "obrewin_data_structures"
 
 [dependencies]
 chrono = { workspace = true }
+obrewin-utils = { workspace = true }
 rust_decimal = { workspace = true }
 serde = { workspace = true }

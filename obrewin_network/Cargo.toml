@@ -16,3 +16,8 @@ version = { workspace = true }
 name = "obrewin_network"
 
 [dependencies]
+anyhow = { workspace = true }
+async-trait = { workspace = true }
+obrewin-data-structures = { workspace = true }
+obrewin-utils = { workspace = true }
+reqwest = { workspace = true }

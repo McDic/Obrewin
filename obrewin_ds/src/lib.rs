@@ -1,4 +1,5 @@
 pub mod market;
 pub mod misc;
 pub mod order;
-pub mod utils;
+
+pub use obrewin_utils as utils;

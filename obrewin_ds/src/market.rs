@@ -28,14 +28,20 @@ pub struct Trade {
 }
 
 /// Represents single change on an orderbook.
-pub enum OrderbookChange {
+pub enum DirectOrderbookChange {
     /// Set `= quantity` at given `price` level.
     Set { price: Price, quantity: Quantity },
     /// Set `+= quantity` at given `price` level.
     Delta { price: Price, quantity: Quantity },
 }
 
-impl OrderbookChange {
+/// Represents any orderbook change.
+pub enum OrderbookChange {
+    DirectChange(Vec<DirectOrderbookChange>),
+    Snapshot(Box<dyn Orderbook>),
+}
+
+impl DirectOrderbookChange {
     /// Get price target level.
     fn get_price_level(&self) -> Price {
         match self {
@@ -69,7 +75,7 @@ impl OrderbookChange {
     }
 }
 
-impl Neg for OrderbookChange {
+impl Neg for DirectOrderbookChange {
     type Output = Self;
 
     fn neg(self) -> Self::Output {
@@ -107,7 +113,7 @@ pub trait Orderbook {
 
     /// Apply change on current orderbook.
     /// This method does not guarantee that the modified state is valid.
-    fn apply_change(&mut self, change: &OrderbookChange, is_ask: bool) -> ();
+    fn apply_change(&mut self, change: &DirectOrderbookChange, is_ask: bool) -> ();
 
     /// Return first ask price, first ask quantity, and iterator of remaining ask levels.
     /// If there is no ask, return `Price::MIN` as price and `Quantity::ZERO` as quantity.
@@ -175,7 +181,7 @@ impl Orderbook for UnsizedOrderbook {
         self.bids.iter().wrap_iter()
     }
 
-    fn apply_change(&mut self, change: &OrderbookChange, is_ask: bool) -> () {
+    fn apply_change(&mut self, change: &DirectOrderbookChange, is_ask: bool) -> () {
         let mapping = if is_ask {
             self.asks.borrow_mut()
         } else {
