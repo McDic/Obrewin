@@ -1,0 +1,19 @@
+name: Rust checks
+
+on:
+  push:
+    branches:
+      - "**"
+    tags-ignore:
+      - "**"
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo fmt --check
+        name: Run formatter check
+      - run: cargo test
+        name: Compile and run tests

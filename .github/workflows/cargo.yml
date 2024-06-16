@@ -14,5 +14,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - run: cargo publish -p obrewin-utils
+        name: Publish utils
       - run: cargo publish -p obrewin-data-structures
+        name: Publish data structures
       - run: cargo publish -p obrewin-network
+        name: Publish networking components
