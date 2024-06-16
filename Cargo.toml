@@ -17,9 +17,9 @@ anyhow = { version = "1" }
 async-trait = { version = "0.1" }
 axum = { version = "0.7" }
 chrono = { version = "0.4" }
-obrewin-data-structures = { path = "./obrewin_ds" }
-obrewin-network = { path = "./obrewin_network" }
-obrewin-utils = { path = "./obrewin_utils" }
+obrewin-data-structures = { path = "./obrewin_ds", version = ">=0" }
+obrewin-network = { path = "./obrewin_network", version = ">=0" }
+obrewin-utils = { path = "./obrewin_utils", version = ">=0" }
 reqwest = { version = "0.12" }
 rust_decimal = { version = "1.35" }
 rust_decimal_macros = { version = "1.35" }
