@@ -1,0 +1,16 @@
+[package]
+name = "obrewin-utils"
+description = "General utilities for Obrewin"
+readme = "README.md"
+
+authors = { workspace = true }
+categories = { workspace = true }
+edition = { workspace = true }
+homepage = { workspace = true }
+keywords = { workspace = true }
+license-file = { workspace = true }
+repository = { workspace = true }
+version = { workspace = true }
+
+[lib]
+name = "obrewin_utils"
