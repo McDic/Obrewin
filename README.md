@@ -1,6 +1,10 @@
 # Obrewin Framework
 
-A quantitative trading framework made for indie trading.
+A quantitative trading framework made for indie trading in Rust.
+
+- [Obrewin Data Structures](https://crates.io/crates/obrewin-data-structures)
+- [Obrewin Network](https://crates.io/crates/obrewin-network)
+- [Obrewin Utils](https://crates.io/crates/obrewin-utils)
 
 ## User Guide
 
@@ -8,6 +12,17 @@ A quantitative trading framework made for indie trading.
 
 - Python 3.11+
 - Rust 1.72+
+
+Add following dependencies in your `Cargo.toml`.
+Every crate here will be version-synchronized automatically,
+so use same versions if you are using multiple crates from this repository.
+
+```toml
+[dependencies]
+obrewin-data-structures = { version = "*" }
+obrewin-network = { version = "*" }
+obrewin-utils = { version = "*" }
+```
 
 ## Developer Guide
 
